@@ -1,0 +1,38 @@
+<h1>Agregando Tipos de Servicio</h1>
+<a href="{% url 'home' %}">volver</a> 
+
+
+<form action="." method='POST' class="formulario">{% csrf_token %}
+    {{ form.as_p }} 
+    <input type='submit' value='Guardar' class="btn btn-primary"/> 
+</form>
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<table class="table table-bordered" border="1">   
+        <tr>
+            <th>Tipo de Plato </th>
+            <th><center> Entrada </center></th>
+            <th><center> Plato de Fondo </center></th>
+            <th><center> Postre </center></th>
+            <th><center> Valor Menú </center></th>
+        </tr>
+                
+    {% for listaComedor in listComedor  %}                            
+        <tr>
+            <td>{{ listaComedor.tipoPlato}}   </td>
+            <td><center>{{ listaComedor.entrada }} </center></td>
+            <td><center>{{ listaComedor.platoFondo }} </center></td>
+            <td><center>{{ listaComedor.postre }} </center></td>
+            <td><center>$ {{ listaComedor.valorMenu }} </center></td>
+        </tr>
+    {% endfor %}
+</table>     
+

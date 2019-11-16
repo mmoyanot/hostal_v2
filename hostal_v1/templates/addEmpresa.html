@@ -1,0 +1,35 @@
+<h1>Agregando Empresa</h1>
+<a href="{% url 'home' %}">volver</a> 
+
+
+<form action="." method='POST' class="formulario">{% csrf_token %}
+    {{ form.as_p }} 
+    <input type='submit' value='Guardar' class="btn btn-primary"/> 
+</form>
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<table class="table table-bordered" border="1">   
+        <tr>
+            <th>Rut Empresa </td>
+            <th><center> Nombre Empresa </center></th>
+            <th><center> Giro Empresa </center></th>
+            <th><center> Dirección </center></th>
+        </tr>
+                
+    {% for listaEmp in listEmp  %}                            
+        <tr>
+            <td>{{ listaEmp.rutEmpresa }}   </td>
+            <td><center>{{ listaEmp.nombreEmpresa }} </center></td>
+            <td><center>{{ listaEmp.giroEmpresa }} </center></td>
+            <td><center>{{ listaEmp.dirEmpresa }} </center></td>
+        </tr>
+    {% endfor %}
+</table>     

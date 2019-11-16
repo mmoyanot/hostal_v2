@@ -1,0 +1,38 @@
+<h1>Habitaciones</h1>
+<a href="{% url 'home' %}">Volver</a> 
+<br>
+<a href="{% url 'addHab' %}">Agregar Habitación</a> 
+                  
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h3>Lista de habitaciones</h3>
+<div>
+    <table class="table table-bordered" border="1">   
+            <tr>
+                <th>Numero Habitación </th>
+                <th><center> Tipo de habitacion </center></th>
+                <th><center> Tipo de Cama </center></th>
+                <th><center> Accesorios </center></th>
+                <th><center> Precio </center></th>
+                <th><center> Estado </center></th>
+            </tr>
+                    
+        {% for listaHab in listHab  %}                            
+            <tr>
+                <td>{{ listaHab.nroHabitacion }}   </td>
+                <td><center>{{ listaHab.tipoHabitacion }}</center></td>
+                <td><center>{{ listaHab.tipoCama }} </center></td>
+                <td><center>{{ listaHab.accesorios }} </center></td>
+                <td><center>$ {{ listaHab.precio }} </center></td>
+                <td><center>{{ listaHab.estado_habitacion }} </center></td>
+                <td><center><a href="{% url 'editEstHab' listaHab.id %}">Editar</a></center></td>  
+            </tr>
+        {% endfor %}
+    </table>     
+</div>

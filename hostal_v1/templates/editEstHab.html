@@ -1,0 +1,30 @@
+<h1>Editando estado de habitación</h1>
+<a href="{% url 'listHab' %}">Volver</a> 
+<h3>Número de habitación: {{hab.nroHabitacion}}</h3>
+
+<form class="" action="" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+    {{field}}
+    {% endfor %}
+    <button type="submit" name="button">Actualizar Estado</button>
+  
+  </form>
+
+<div>
+    <table class="table table-bordered" border="1">   
+            <tr>
+                <th>Numero Habitación </th>
+                <th><center> Tipo de habitacion </center></th>
+                <th><center> Estado </center></th>
+            </tr>
+                    
+        {% for listaHab in listHab  %}                            
+            <tr>
+                <td>{{ listaHab.nroHabitacion }}   </td>
+                <td><center>{{ listaHab.tipoHabitacion }}</center></td>
+                <td><center>{{ listaHab.estado_habitacion }} </center></td> 
+            </tr>
+        {% endfor %}
+    </table>     
+</div>

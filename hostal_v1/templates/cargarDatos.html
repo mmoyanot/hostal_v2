@@ -1,0 +1,56 @@
+<a href="{% url 'home' %}">volver</a> 
+
+<form method="GET">
+    <input type="text" placeholder="Buscar..." name="buscar">
+    <button type="submit"> Buscar </button>
+</form>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<p>Rut Empresa :{{ empDatos.rutEmpresa }}  </p>
+<p>Nombre Empresa: {{ empDatos.nombreEmpresa }} </p>
+<p>Giro: {{ empDatos.giroEmpresa }} </p>
+<p>Dirección: {{ empDatos.dirEmpresa }} </p>
+
+<form action="." method='POST' class="formulario">{% csrf_token %}
+    {{ form.as_p }} 
+    <input type='submit' value='Guardar' class="btn btn-primary"/> 
+</form>
+
+<p> </p>
+<h1>DATOS ALMACENADOS</h1>
+
+<table class="table table-bordered" border="1">   
+    <tr>
+        <td>Rut Empresa </td>
+        <td><center> Nombre Empresa </center></td>
+        <td><center> Giro Empresa </center></td>
+        <td><center> Dirección </center></td>
+        <td><center> Tipo de Servicio </center></td>
+        <td><center> Valor de Servicio </center></td>
+        <td><center> Tipo Habitación </center></td>
+        <td><center> Valor Habitación </center></td>
+        <td><center> Total </center></td>
+    </tr>
+            
+{% for listaEmp in facDatos  %}                            
+    <tr>
+        <td>{{ listaEmp.rut_Emp_Fac }}   </td>
+        <td><center>{{ listaEmp.nombre_Emp_Fac }} </center></td>
+        <td><center>{{ listaEmp.giro_Emp_Fac }} </center></td>
+        <td><center>{{ listaEmp.dir_Emp_Fac }} </center></td>
+        <td><center>{{ listaEmp.tipo_Serv_Fac }} </center></td>
+        <td><center>{{ listaEmp.valor_Serv_Fac }} </center></td>
+        <td><center>{{ listaEmp.tipo_Hab_Fac }} </center></td>
+        <td><center>{{ listaEmp.valor_Hab_Fac }} </center></td>
+        <td><center>{{ listaEmp.total_Fac }} </center></td>
+    </tr>
+{% endfor %}
+</table>     
